@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Issues Tracker | Home Page</title>
+
+        <!-- add favicon -->
+        <link rel="shortcut icon" href="./assets/github-logo.png" type="image/x-icon">
+
+        <!-- Tailwind css link -->
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        
+        <!-- daisy UI link -->
+        <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+        
+        <!-- Font Awesome link for iCON -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
+        <!-- Google Fonts link -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+        
+  <!-- Connect with CSS file -->
+ <link rel="stylesheet" href="./style.css">
+        
+</head>
+<body class=" bg-gray-200 py-5 w-11/12 mx-auto ">
+    <!-- Nav bar Section Design -->
+ 
+      <!-- <div class="navbar bg-base-100 shadow-sm">
+  
+          <div class="navbar-start">
+            <div class="dropdown">
+              <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+              </div>
+              <ul
+                tabindex="-1"
+                class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                <li>
+                  <a href="" class=""><i class="fa-regular fa-circle-question"></i>FAQ </a>
+              </li>
+              <li>
+                  <a href="" class=""><i class="fa-solid fa-book-open"></i>Learn </a>
+              </li>
+              <li>
+                  <a href="" class=""><i class="fa-solid fa-arrow-right-from-bracket"></i>LogOut </a>
+              </li>
+              </ul>
+            </div>
+            <a href="" class="flex items-center gap-1">
+              <span class="text-lg font-bold">English</span>
+              <img src="./assets/logo.png" alt="">
+              <span class="font-bangla text-lg font-semibold">জানালা</span>
+            </a>
+          </div>
+          <div class="navbar-end hidden lg:flex">
+            <ul class="menu menu-horizontal px-1 space-x-4">
+              <li>
+                  <a href="" class="btn btn-primary"><i class="fa-regular fa-circle-question"></i>FAQ </a>
+              </li>
+              <li>
+                  <a href="" class="btn btn-primary"><i class="fa-solid fa-book-open"></i>Learn </a>
+              </li>
+              <li>
+                  <a href="" class="btn btn-primary"><i class="fa-solid fa-arrow-right-from-bracket"></i>LogOut </a>
+              </li>
+            </ul>
+          </div>
+  
+        </div> -->
+        <header>
+          <div class="navbar bg-base-100 shadow-sm px-4">
+        
+            <!-- Left Side -->
+            <div class="navbar-start flex items-center gap-3">
+              <img src="./assets/github-logo.png" class="w-10">
+              <p class="text-xl font-semibold">GitHub Issues Tracker</p>
+            </div>
+        
+            <!-- Right Side -->
+            <div class="navbar-end flex items-center gap-4">
+               <button id="search-id"><i class="fa-brands fa-sistrix"></i><input id="input-search" type="text"  placeholder="Search Issues" class="input input-bordered w-56 md:w-72"/> </button>
+                
+              <button class="btn btn-primary">
+                + New Issue
+              </button>
+        
+            </div>
+        
+          </div>
+        </header>
+  <main class="py-5 px-10 md:px-10 max-w-7xl mx-auto space-y-7">
+
+  
+     <!-- Status Section Design -->
+    <section id="status-dashboard" class="w-11/12 mx-auto py-3 p-3 flex justify-between items-center bg-white shadow-xl border-2 border-white rounded-lg" > 
+      <div role="tablist" class="tabs gap-2 status-container  ">
+        <button onclick="filterJobs('all')" id="all-issue" role="tab" class="btn btn-primary w-40  tab-active  bg-blue-600  text-white rounded-md font-medium">All</button>
+        <button onclick="filterJobs('open-tab')" id="open-issue-tab" role="tab" class="btn w-40 bg-white text-black rounded-md font-normal">Open</button>
+        <button onclick="filterJobs('closed-tab')" id="closed-issue-tab" role="tab" class="btn w-40 bg-white text-black rounded-md font-normal">Closed</button>
+      </div>
+    </section>  
+
+     <!-- Display Section Design -->
+        <section class="w-11/12 mx-auto py-3 p-3 flex justify-between items-center bg-white shadow-xl border-2 border-white rounded-lg">
+          <div class="left flex gap-4">
+             <div class="logo mx-auto ">
+                <img src="./assets/Aperture.png" alt="" class="w-15 bg-violet-300 rounded-full">
+             </div>
+             <div class="balance-info">
+                <h2 class="text-2xl font-bold" id="total-issue"> </h2>
+                <p class="text-neutral/50">Track and manage your project issues</p>
+             </div>
+    
+          </div>
+          <div class="right flex justify-between items-center gap-2">
+            <img src="./assets/open.png" alt="open">
+            <img src="./assets/close.png" alt="close">
+          </div>
+        </section>
+
+         <!-- All Issues Section Design -->
+         <section id="issue-card-container" class="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
+  
+ 
+
+         </section>
+
+
+        <!-- Design Modal for displaying specific word details to hide rest behind -->
+        <dialog id="word_details_modal" class="modal modal-bottom sm:modal-middle">
+          <div class="modal-box">
+            <div id="details-container" class="space-y-5">
+             
+            </div>
+            <div class="modal-action">
+              <form method="dialog">
+                <!-- if there is a button in form, it will close the modal -->
+                <!-- <button class="btn">Close</button> -->
+                <button class="btn btn-primary w-50 ">Complete Learning</button>
+              </form>
+            </div>
+          </div>
+        </dialog>
+
+
+
+       <!-- Footer Section -->
+<footer class="bg-white-100  p-10 w-11/12 mx-auto my-10 flex justify-between items-center">
+
+</footer>
+ 
+</main>    
+<!-- Connected JavaScript file -->
+ <script src="./scripts/scripts.js"></script>   
+</body>
+</html>
