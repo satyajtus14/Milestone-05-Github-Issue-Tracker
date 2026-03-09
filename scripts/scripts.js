@@ -103,7 +103,7 @@ const displayissueById = (issues) => {
     </span>
     </div>
     
-    <h2 class="font-semibold text-lg md:text-2xl lg:text-4xl">${i.title}</h2>
+    <h2 class="font-semibold text-lg md:text-2xl ">${i.title}</h2>
     
     <p class="text-gray-500 text-sm">${i.description}</p>
     
@@ -316,7 +316,7 @@ const displayIssueDetails = (issue) => {
 
   detailsBox.innerHTML = `
  <div class="bg-white w-11/12 rounded-xl shadow-lg p-8 space-y-6">
-     <h2 class=" font-bold text-lg md:text-2xl lg:text-4xl">${issue.title || "No Title"}</h2>
+     <h2 class=" font-bold text-lg md:text-2xl ">${issue.title || "No Title"}</h2>
 
     <div class="flex items-center gap-3 text-sm text-gray-500">
       <span class="bg-green-500 text-white px-3 py-1 rounded-full text-xs">
