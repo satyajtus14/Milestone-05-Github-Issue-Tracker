@@ -80,6 +80,11 @@
           </div>
         </section>
 
+        <!-- Add Spinning element for loading page -->
+   <section id="spinner" class="flex justify-center items-center py-10 hidden">
+    <span class="loading loading-bars loading-xl"></span>
+   </section>
+
          <!-- All Issues Section Design -->
          <section id="issue-card-container" class="all-issues-bank w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
   
@@ -89,15 +94,15 @@
 
         <!-- Design Modal for displaying specific word details to hide rest behind -->
         <dialog id="word_details_modal" class="modal modal-bottom sm:modal-middle">
-          <div class="modal-box">
-            <div id="details-container" class="space-y-5">
+          <div id="details-container" class="modal-box">
+            <div class="space-y-5">
              
             </div>
             <div class="modal-action">
               <form method="dialog">
                 <!-- if there is a button in form, it will close the modal -->
                 <!-- <button class="btn">Close</button> -->
-                <button class="btn btn-primary w-50 ">Complete Learning</button>
+                <!-- <button class="btn btn-primary w-50 ">Close</button> -->
               </form>
             </div>
           </div>
@@ -115,3 +120,6 @@
  <script src="./scripts/scripts.js"></script>   
 </body>
 </html>
+
+
+

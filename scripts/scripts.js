@@ -1,15 +1,3 @@
-
-/* Remove Active status to All buttons */
-// const removeActive =() => {
-//   const issueCountBtn = document.querySelectorAll('.issue-btn');
-//   console.log(issueCountBtn);
-//   issueCountBtn.forEach(btn => {
-//   btn.classList.remove('tab-active');
-//      })
-
-//  }
-
-
 let allIssues = [];
 
 /* Searching feature */
@@ -85,7 +73,7 @@ loadAllIssues();
 
 /* Task no-2: Displayed all issues by card*/
 const displayissueById = (issues) => {
-
+    manageSpinner(true);
     const issueContainer = document.getElementById("issue-card-container");
     issueContainer.innerHTML = "";
     
@@ -93,14 +81,14 @@ const displayissueById = (issues) => {
     
     const issueCardDiv = document.createElement("div");
     
-    issueCardDiv.className = "allIssue bg-white rounded-xl shadow p-5 space-y-4";
+    issueCardDiv.className = "bg-white rounded-xl shadow p-5 space-y-4";
 
     const priorityColor = i.priority === "high"? "bg-red-100 text-red-500":
      i.priority === "medium"? "bg-yellow-100 text-yellow-600": "bg-gray-100 text-gray-500";
 
 
     issueCardDiv.innerHTML = `
-    <div class="flex justify-between items-center">
+    <div id="details-issue-box" class="flex justify-between items-center">
        <img src="./assets/Open-Status.png">
     <span class="px-3 py-1 text-xs rounded-full ${priorityColor}">${i.priority.toUpperCase()}
     </span>
@@ -115,7 +103,7 @@ const displayissueById = (issues) => {
     </div>
     
     <div class="border-t pt-3 text-sm text-gray-500">
-    #1 by ${i.author} <br>
+    #${i.id || ""} by ${i.author} <br>
     ${new Date(i.createdAt).toLocaleDateString()}
     </div>
     `;
@@ -149,6 +137,7 @@ const displayissueById = (issues) => {
 
   /* Managing all by Render function  */  
     function renderIssues(){
+      manageSpinner(true);
 
       const issueContainer = document.getElementById("issue-card-container");
       issueContainer.innerHTML = "";
@@ -167,7 +156,7 @@ const displayissueById = (issues) => {
     
       if(filteredIssues.length === 0){
         issueContainer.innerHTML = `
-          <div class="hero bg-base-200 min-h-screen py-6 mx-auto">
+          <div class="bg-white rounded-xl shadow p-5 space-y-4">
             <div class="hero-content text-center">
               <div class="max-w-md">
                 <h1 class="text-3xl font-bold">No Issues Found</h1>
@@ -218,16 +207,21 @@ const displayissueById = (issues) => {
             ${issue.labels?.length ? createElement(issue.labels) : ""}
           </div>
     
-          <div class="border-t pt-3 text-sm text-gray-500">
-            #1 by ${issue.author}<br>
+          <div class="border-t pt-3 text-sm text-gray-500 flex justify-end gap-4">
+            #${issue.id || ""} by ${issue.author}<br>
             ${new Date(issue.createdAt).toLocaleDateString()}
+
+            <span onclick="loadIssueDetails('${issue.id}')" class="btn btn-xs font-semibold text-xs btn-outline">
+            View Details
+            </span>
           </div>
+
         `;
     
         issueContainer.appendChild(div);
-    
+        
       });
-    
+      manageSpinner(false);
     }
 
 /* Calling function for all calculation */
@@ -248,14 +242,6 @@ const displayissueById = (issues) => {
     }
 
     /* Toggle TAB(ALL,OPEN & CLOSED) feature */
-    // function filterJobs(status){
-
-    //   currentStatus = status;
-    
-    //   renderIssues();
-    //   removeActive();
-   
-    // }
 
     function filterJobs(status) {
       currentStatus = status;
@@ -282,4 +268,93 @@ const displayissueById = (issues) => {
       }
   
       renderIssues();
+      manageSpinner(false);
   }
+
+
+  /* manage spinner while data take time to load*/
+const manageSpinner = (status)  => {
+    
+  if(status === true){
+      document.getElementById('spinner').classList.remove('hidden');
+      document.getElementById('issue-card-container').classList.add('hidden');
+
+  }
+  else{
+      document.getElementById('issue-card-container').classList.remove('hidden');
+      document.getElementById('spinner').classList.add('hidden');
+  }
+}
+
+
+/* Design and code for Modal */
+
+const loadIssueDetails = async (id) => {
+  const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
+ const res = await fetch(url);
+ const details = await res.json();
+ displayIssueDetails(details.data);
+  
+}
+
+/* Modal Section and displaying details of specific word */
+const displayIssueDetails = (issue) => {
+
+  if(!issue){
+    console.error("Issue not found");
+    return;
+  }
+  const detailsBox = document.getElementById('details-container');
+
+  detailsBox.innerHTML = `
+ <div class="bg-white w-11/12 rounded-xl shadow-lg p-8 space-y-6">
+     <h2 class="text-3xl font-bold">${issue.title || "No Title"}</h2>
+
+    <div class="flex items-center gap-3 text-sm text-gray-500">
+      <span class="bg-green-500 text-white px-3 py-1 rounded-full text-xs">
+        ${issue.status.toUpperCase()}
+      </span>
+      <span>Opened by ${issue.author || "Unknown"}</span>
+      <span>•</span>
+      <span>${new Date(issue.createdAt).toLocaleDateString()}</span>
+    </div>
+
+    <div class="flex gap-2">
+      ${issue.labels?.length ? createElement(issue.labels) : ""}
+    </div>
+
+    <p class="text-gray-600">
+      ${issue.description}
+    </p>
+
+    <div class="bg-gray-100 rounded-lg p-5 flex justify-between">
+
+      <div>
+        <p class="text-gray-500 text-sm">Assignee:</p>
+        <p class="font-semibold">${issue.assignee || "Unassigned"}</p>
+      </div>
+
+      <div>
+        <p class="text-gray-500 text-sm">Priority:</p>
+        <span class="bg-red-500 text-white px-3 py-1 rounded-full text-xs">
+        ${issue.priority ? issue.priority.toUpperCase() : "LOW"}
+        </span>
+      </div>
+        
+    </div> 
+    <div class="flex justify-end">
+        <button onclick="closeModal()" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700">
+          Close
+        </button>
+      </div>
+  </div>  
+  `;
+
+  document.getElementById('word_details_modal').showModal();
+};
+
+
+function closeModal(){
+  document.getElementById("word_details_modal").close();
+  document.getElementById("details-container").innerHTML = "";
+}
