@@ -1,11 +1,13 @@
 
 /* Remove Active status to All buttons */
-const removeActive =() => {
-  const issueCountBtn = document.querySelectorAll('.issue-btn');
-  issueCountBtn.forEach(btn => {
-  btn.classList.remove('btn-active');
-     })
- }
+// const removeActive =() => {
+//   const issueCountBtn = document.querySelectorAll('.issue-btn');
+//   console.log(issueCountBtn);
+//   issueCountBtn.forEach(btn => {
+//   btn.classList.remove('tab-active');
+//      })
+
+//  }
 
 
 let allIssues = [];
@@ -19,7 +21,7 @@ function searchIssues(){
   if(!searchValue){
     issues = allIssues;
     renderIssues();
-    updateTotalIssueNumber();
+    updateTotalIssueNumber(issues.length);
     return;
   }
 
@@ -28,9 +30,10 @@ function searchIssues(){
     .then(data => {
 
       issues = data.data;
+      console.log(issues.length);
       
       renderIssues();
-      updateTotalIssueNumber();
+      updateTotalIssueNumber(issues.length);
 
       searchInput.value = "";
 
@@ -68,7 +71,7 @@ document.getElementById("input-search").addEventListener("keydown", (e) => {
       issues = data.data;
       allIssues = data.data;
       renderIssues();
-      removeActive();
+      
 
     });
 
@@ -162,7 +165,7 @@ const displayissueById = (issues) => {
     
       updateTotalIssueNumber(filteredIssues.length);
     
-      if(filteredIssues.inn=== "open"){
+      if(filteredIssues.length === 0){
         issueContainer.innerHTML = `
           <div class="hero bg-base-200 min-h-screen py-6 mx-auto">
             <div class="hero-content text-center">
@@ -178,7 +181,18 @@ const displayissueById = (issues) => {
       filteredIssues.forEach(issue => {
     
         const div = document.createElement("div");
-    
+
+        const statusBorder =
+        issue.status === "open"
+          ? "border-t-4 border-green-500"
+          : "border-t-4 border-fuchsia-500";
+       
+          const statusImage =
+          issue.status === "open"
+          ? "./assets/Open-Status.png"
+          : "./assets/Closed-Status.png";
+
+
         const priorityColor =
           issue.priority === "high"
           ? "bg-red-100 text-red-500"
@@ -186,11 +200,11 @@ const displayissueById = (issues) => {
           ? "bg-yellow-100 text-yellow-600"
           : "bg-gray-100 text-gray-500";
     
-        div.className = "bg-white rounded-xl shadow p-5 space-y-4";
+        div.className = `bg-white rounded-xl shadow p-5 space-y-4 ${statusBorder}`;
     
         div.innerHTML = `
           <div class="flex justify-between items-center">
-            <img src="./assets/Open-Status.png">
+          <img src="${statusImage}">
             <span class="px-3 py-1 text-xs rounded-full ${priorityColor}">
               ${issue.priority.toUpperCase()}
             </span>
@@ -234,10 +248,38 @@ const displayissueById = (issues) => {
     }
 
     /* Toggle TAB(ALL,OPEN & CLOSED) feature */
-    function filterJobs(status){
+    // function filterJobs(status){
 
-      currentStatus = status;
+    //   currentStatus = status;
     
+    //   renderIssues();
+    //   removeActive();
+   
+    // }
+
+    function filterJobs(status) {
+      currentStatus = status;
+  
+      document.querySelectorAll(".issue-btn")
+          .forEach(btn => btn.classList.remove("btn-active"));
+  
+      if (status === "all") {
+          document.getElementById("all-issue").classList.add("btn-active");
+          
+      } else if (status === "open") {
+          document.getElementById("open-issue-tab").classList.add("btn-active");
+          document.getElementById("all-issue").classList.remove("btn-active");
+          document.getElementById("closed-issue-tab").classList.remove("btn-active");
+
+      } else if (status === "closed")
+      {
+          document.getElementById("closed-issue-tab").classList.add("btn-active");
+          document.getElementById("all-issue").classList.remove("btn-active");
+          document.getElementById("open-issue-tab").classList.remove("btn-active");
+      }
+      else {
+
+      }
+  
       renderIssues();
-     
-    }
+  }

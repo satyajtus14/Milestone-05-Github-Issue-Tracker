@@ -39,7 +39,7 @@
         
             <!-- Right Side -->
             <div class="navbar-end flex items-center gap-4">
-               <button id="search-id"><i class="fa-brands fa-sistrix"></i><input id="input-search" type="text"  placeholder="Search Issues" class="input input-bordered w-56 md:w-72"/> </button>
+               <button id="search-id"><input id="input-search" type="text"  placeholder="Search Issues" class="input input-bordered w-56 md:w-72"/> </button>
                 
               <button class="btn btn-primary">
                 + New Issue
@@ -56,9 +56,9 @@
      <!-- Status Section Design -->
     <section id="status-dashboard" class="w-11/12 mx-auto py-3 p-3 flex justify-between items-center bg-white shadow-xl border-2 border-white rounded-lg" > 
       <div role="tablist" class="tabs gap-2 status-container  ">
-        <button onclick="filterJobs('all')" id="all-issue" role="tab" class="btn issue-btn btn-primary w-40  tab-active  bg-blue-600  text-white rounded-md font-medium">All</button>
-        <button onclick="filterJobs('open')" id="open-issue-tab" role="tab" class="btn issue-btn w-40 bg-white text-black rounded-md font-normal">Open</button>
-        <button onclick="filterJobs('closed')" id="closed-issue-tab" role="tab" class="btn issue-btn w-40 bg-white text-black rounded-md font-normal">Closed</button>
+        <button onclick="filterJobs('all')" id="all-issue" role="tab" class="btn issue-btn  w-40 border-black btn-active  text-black rounded-md font-medium">All</button>
+        <button onclick="filterJobs('open')" id="open-issue-tab" role="tab" class="btn issue-btn w-40 bg-white text-black border-black rounded-md font-normal">Open</button>
+        <button onclick="filterJobs('closed')" id="closed-issue-tab" role="tab" class="btn issue-btn w-40 bg-white text-black border-black rounded-md font-normal">Closed</button>
       </div>
     </section>  
 
@@ -83,8 +83,6 @@
          <!-- All Issues Section Design -->
          <section id="issue-card-container" class="all-issues-bank w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
   
- 
-
          </section>
 
 
