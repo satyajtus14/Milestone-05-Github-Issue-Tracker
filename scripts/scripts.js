@@ -3,7 +3,7 @@
 function signOut(){
   localStorage.removeItem("user"); // remove login data
   alert("Logged out successfully");
-  window.location.href = "login.html"; // redirect to login page
+  window.location.href = "index.html"; // redirect to login page
 }
 
 
