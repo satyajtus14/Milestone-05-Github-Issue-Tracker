@@ -27,7 +27,7 @@ function searchIssues(){
     .then(data => {
 
       issues = data.data;
-      console.log(issues.length);
+      // console.log(issues.length);
       
       renderIssues();
       updateTotalIssueNumber(issues.length);
@@ -123,7 +123,7 @@ const displayissueById = (issues) => {
     };
 
   
-/* Managing Label color */
+/* Managing Label by color */
   function createElement(labels){
 
     return labels.map(label => {  
@@ -160,7 +160,8 @@ const displayissueById = (issues) => {
         filteredIssues = issues.filter(issue => issue.status === "closed");
       }
     
-      updateTotalIssueNumber(filteredIssues.length);
+      // Counting issue number and update it.
+      updateTotalIssueNumber(filteredIssues.length);  
     
       if(filteredIssues.length === 0){
         issueContainer.innerHTML = `
