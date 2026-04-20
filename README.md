@@ -2,16 +2,15 @@
 
 <div align="center">
 
-<!-- TODO: Add project logo (e.g., an icon representing issue tracking) -->
+<p align="center">
+  <img src="public/logo.png" alt="Logo" width="200" />
+</p>
 
-[![GitHub stars](https://img.shields.io/github/stars/satyajtus14/Milestone-05-Github-Issue-Tracker?style=for-the-badge)](https://github.com/satyajtus14/Milestone-05-Github-Issue-Tracker/stargazers)    
-[![GitHub forks](https://img.shields.io/github/forks/satyajtus14/Milestone-05-Github-Issue-Tracker?style=for-the-badge)](https://github.com/satyajtus14/Milestone-05-Github-Issue-Tracker/network)    
-[![GitHub issues](https://img.shields.io/github/issues/satyajtus14/Milestone-05-Github-Issue-Tracker?style=for-the-badge)](https://github.com/satyajtus14/Milestone-05-Github-Issue-Tracker/issues)    
-[![GitHub license](https://img.shields.io/github/license/satyajtus14/Milestone-05-Github-Issue-Tracker?style=for-the-badge)](https://github.com/satyajtus14/Milestone-05-Github-Issue-Tracker/blob/main/LICENSE)     
+
 
 **A sleek and intuitive client-side GitHub Issue Tracker for efficient task management, built with modern web technologies.**
 
-[Live Demo](https://satyajtus14.github.io/Milestone-05-Github-Issue-Tracker/home.html)     
+[Live Demo](https://satyajtus14.github.io/Project-Github-Issue-Tracker/)     
 
 </div>
 
@@ -28,6 +27,8 @@ The GitHub Issue Tracker is a frontend-only web application designed to help use
 -   ✍️ **Vanilla JavaScript Interactivity**: Dynamic client-side behavior powered purely by Vanilla JavaScript, showcasing fundamental web development practices.
 -   📱 **Responsive Design**: Adapts seamlessly to various screen sizes, from desktops to mobile devices.
 
+## Live Link 
+- Github : https://satyajtus14.github.io/Project-Github-Issue-Tracker/
 
 ## 🛠️ Tech Stack
 
